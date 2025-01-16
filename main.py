@@ -21,9 +21,9 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 bot = Client(
 	"bot",
-	api_id=api_id,
-	api_hash=api_hash,
-	bot_token=bot_token)
+	api_id="18116881",
+	api_hash="cca3bacf40fb3ebcb4f075b2e46ff1bd",
+	bot_token="7428927891:AAHoNzLYya8aRaGF2y-ngluSxzy29LlN3XI")
 
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
