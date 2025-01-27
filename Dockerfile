@@ -1,10 +1,15 @@
-FROM ubuntu:latest
-RUN apt-get update -y && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends gcc libffi-dev musl-dev ffmpeg aria2 python3-pip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+FROM python:3.9.6-alpine3.14
 
-COPY . /app
 WORKDIR /app
-RUN pip3 install --no-cache-dir --upgrade --requirement Installer
-CMD python3 modules/main.py
+
+COPY . .
+
+# Update package index and install dependencies
+RUN apk update \
+    && apk add --no-cache gcc libffi-dev musl-dev ffmpeg \
+    # Add the community repository for aria2c
+    && apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community aria2 \
+    && pip install --no-cache-dir -r requirements.txt
+
+# Run both Gunicorn and the Python script
+CMD gunicorn app:app & python3 main.py
