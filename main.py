@@ -23,7 +23,7 @@ bot = Client(
 	"bot",
 	api_id="18116881",
 	api_hash="cca3bacf40fb3ebcb4f075b2e46ff1bd",
-	bot_token="7861730684:AAFXz35XKHxY5Jf3YnCZ6fvl6GmCngk3bmw")
+	bot_token="7428927891:AAHoNzLYya8aRaGF2y-ngluSxzy29LlN3XI")
 
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
